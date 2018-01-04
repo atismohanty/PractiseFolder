@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="author" content="atis">
+<meta name="description" content="Test Project">
+<meta name="HTTP-equiv" content="30">
+<html>
+<head>
+	<title>
+		Test Dev
+	</title>
+	<link href="view-style.css" rel="stylesheet">
+</head>
+<body>
+<h1> Select Address Information</h1>
+<div class="container-address">
+	<div class="col">
+	<select id="country" class="country-dropdown" onclick="buildCountry()" onchange="buildState()"></select>
+	</div>
+	<div class="col">
+	<select id="state" class="country-dropdown"></select>
+	</div>
+	<div class="col">
+	
+</div>
+
+		
+<!--script src="controller.js"></script-->
+<script>
+	var countryList = ["India","USA","Russia","China","France","UK"];
+	var country = document.getElementById("country");
+	var state = document.getElementById("state");
+	
+
+	function buildCountry()
+	{
+		if (!country.value) 
+		{
+			var i=0;
+			while( i < countryList.length)
+			{	
+				var option = document.createElement("OPTION");
+				var opttext = document.createTextNode(countryList[i]);
+				option.appendChild(opttext);
+				country.appendChild(option);
+				i++;
+			}
+		}
+	}
+
+
+	function buildState()
+	{
+		if (country.value) 
+		{
+			var selState = [] ;
+			switch(country.value)
+			{
+				
+				case 'India':
+					selState = ["UP", "MP", "Karnataka", "Odisha", "Delhi"];
+					break;
+				case 'Russia':
+					selState = ["Ukrain", "Belarus", "Vladivostok", "Moscow", "Armenia"];
+					break;
+				case 'USA':
+					selState = ["Washington", "Califirnia", "Massachutes", "Texas", "Detroit"];
+					break;
+			}
+
+			var i=0;
+			while(state.options.length)
+			{
+				state.removeChild(state.childNodes[0]);
+			}
+			while( i < selState.length)
+			{
+
+				var option = document.createElement("OPTION");
+				var opttext = document.createTextNode(selState[i]);
+				option.appendChild(opttext);
+				state.appendChild(option);
+				i++;
+			}
+
+		}
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+.container-address
+{
+	position: relative;
+	width:650px;
+	height:40px;
+	display: block;
+	border: 1 px solid grey;
+	box-shadow: grey;
+}
+.col
+{
+	width: 150px;
+	display: inline-block;
+	height: 30px;
+	padding: 0px;
+	margin: 0px;
+}
+.country-dropdown,.state-dropdown,.city-dropdown,.zip-dropdown
+{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	border: 1px solid grey;
+	float: left;
+	border-radius: 5px;
+	padding: 0px;
+
+}
+.zip-dropdown
+{
+	float: right;
+}

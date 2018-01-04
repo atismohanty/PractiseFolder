@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="author" content="atis">
+<meta name="description" content="Test Project">
+<meta name="HTTP-equiv" content="30">
+<html>
+<head>
+	<title>
+		Test Dev
+	</title>
+	<link href="view-style.css" rel="stylesheet">
+</head>
+<body>
+<h1> Select Address Information</h1>
+<div class="container-address">
+	<div class="col">
+	<select id="country" class="country-dropdown" onclick="buildCountry()" ></select>
+	</div>
+	<div class="col">
+	<select id="state" class="state-dropdown" onclick="buildState()"></select>
+	</div>
+	<div class="col">
+	<select id="city" class="city-dropdown"></select>
+	</div>
+	<!--div class="col">
+	<select id="zip" class="zip-dropdown"></select>
+	</div-->
+</div>
+<input type="button" name="click" id="btngetCntry" value="Dev Test" onclick="buildCountry()">
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		
+<script src="controller.js"></script>
+</body>
+</html>
