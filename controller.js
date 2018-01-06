@@ -52,25 +52,24 @@ function buildCountry()
 						{
 							for (var i = 0 ; i < list.countries.length ; i++) 
 							{
-								if (!country.options) 
-								{
-
-									var listNode  = document.createElement("OPTION");
-								}
-								else
-								{
-									var listNode  = document.createElement("OPTION");
-									//var listNode = country.options;
-								}
-								var textNode = document.createTextNode(list.countries[i].name + '-' + list.countries[i].id);
-								listNode.appendChild(textNode);
+								
+								var listNode  = document.createElement("OPTION");
+								listNode.value = list.countries[i].id;
+								listNode.text = list.countries[i].name ;
 								country.appendChild(listNode);
-								//countryList.push(list.countries[i].name);
 							}
 
 						}
-				}
-			);
+				});
+	}
+
+	if(!countryValueCurr)
+	{
+		buildState();
+	}
+	else if( countryValueCurr != country.childNodes[country.selectedIndex].text )
+	{
+		buildState();
 	}
 }
 
@@ -79,10 +78,10 @@ function buildState()
 	
 	if (!country.value) 
 	{
-		alert("Select the country first");
+		//alert("Select the country first");
 		country.focus();
 	}
-	else if( country.value.split("-")[0] == countryValueCurr)
+	else if( country.value == countryValueCurr)
 	{
 
 	}
@@ -92,8 +91,8 @@ function buildState()
 				{
 					var list = data;
 					//state.removeChildNode();
-					var countryID = country.value.split("-")[1];
-					countryValueCurr = country.value.split("-")[0];
+					var countryID = country.value;
+					countryValueCurr = country.childNodes[country.selectedIndex].text;
 					
 					var stateList = [];
 					//alert(" Java Scipt File In Intact");
@@ -110,24 +109,17 @@ function buildState()
 							for (var i = 0 ; i < list.states.length ; i++) 
 							{
 								if (list.states[i].country_id == countryID )
-									if (!state.options) 
-									{
-										var listNodeState = document.createElement("OPTION");
-									}
-									else
-									{
-										var listNodeState = document.createElement("OPTION");
-										//var listNodeState = state.options;
-									}
-								var textNode = document.createTextNode(list.states[i].name + '-' + list.states[i].id);
-								listNodeState.appendChild(textNode);
-								state.appendChild(listNodeState);
-								//stateList.push(list.states[i].name);
+								{
+									var listNodeState =[];
+									listNodeState = document.createElement("OPTION");
+									listNodeState.value = list.states[i].id;
+									listNodeState.text = list.states[i].name;
+									state.appendChild(listNodeState);
+								}
 							}
 
 						}
-				}
-			);
+				});
 	}
 
 }
@@ -140,7 +132,7 @@ function buildCity()
 		alert("Select the state first");
 		state.focus();
 	}
-	else if( state.value.split("-")[0] == stateValueCurr)
+	else if( state.value == stateValueCurr)
 	{
 
 	}
@@ -149,34 +141,32 @@ function buildCity()
 		$.get('city.json', function(data, status)
 				{
 					var list = data;
-					
-					var stateID = state.value.split("-")[1];
-					stateValueCurr = state.value.split("-")[0];
-					
+					var stateID = state.value;
+					stateValueCurr = state.childNodes[state.selectedIndex].text;
 					var cityList = [];
-					alert(" Java Scipt File In Intact");
+					//alert(" Java Scipt File In Intact");
 					if ( list != 'NULL' && list !='') 
 						{
+							while(city.options.length)
+							{
+								city.removeChild(city.childNodes[0])
+							}
+
 							for (var i = 0 ; i < list.cities.length ; i++) 
 							{
 								if (list.cities[i].state_id == stateID )
-								if (! city.options)
 								{
 									var listNodeCity  = document.createElement("OPTION");
+									listNodeCity.value = list.cities[i].id;
+									listNodeCity.text = list.cities[i].name;
+									city.appendChild(listNodeCity);
 								}
-								else
-								{
-									//var listNodeCity  = country.options;
-								}
-								var textNode = document.createTextNode(list.cities[i].name + '-' + list.cities[i].id);
-								listNodeCity.appendChild(textNode);
-								city.appendChild(listNodeCity);
-								//cityList.push(list.cities[i].name);
+
+
 							}
 
 						}
-				}
-			);
+				});
 	}
 
 }
